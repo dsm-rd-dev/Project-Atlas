@@ -16,6 +16,4 @@ module.exports = {
     errFail: function(text){
         log(chalk.red(text))
     }
-
-    
 }

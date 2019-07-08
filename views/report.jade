@@ -1,0 +1,15 @@
+head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+p.device
+    b= title
+p.header= subhead
+
+table.info
+    tbody
+        each item in items
+            tr
+                td
+                    b= item.title
+                td= item.info
