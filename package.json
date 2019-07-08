@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "@microsoft/microsoft-graph-client": "^1.7.0",
@@ -20,6 +21,7 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "@microsoft/microsoft-graph-types": "^1.9.0"
+    "@microsoft/microsoft-graph-types": "^1.9.0",
+    "nodemon": "^1.19.1"
   }
 }
