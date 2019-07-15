@@ -26,7 +26,8 @@ function getCompanyID(identifier) {
         cw.CompanyAPI.Companies.getCompanies({
             "conditions": 'identifier = "' + identifier + '"'
         }).then(comp => {
-            resolve(comp[0].id);
+            if(comp.length > 0) resolve(comp[0].id);
+            else resolve(250);
         }).catch(err => {
             console.log(err);
             resolve(250);
