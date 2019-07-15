@@ -15,6 +15,7 @@ var apiRouter = require('./routes/api')(User);
 var authRouter = require('./routes/auth')(passport, User);
 
 var app = express();
+app.use(cors());
 app.use(passport.initialize());
 app.use(session({
   secret: "It's a secret to everyone",
@@ -24,7 +25,6 @@ app.use(session({
 app.use(passport.session());
 
 app.use(logger('dev'));
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -36,7 +36,7 @@ app.use('/login', authRouter);
 
 app.get('/express_backend', (req, res) => {
   res.send({ express: 'Your backend is working' });
-})
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
