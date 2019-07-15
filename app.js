@@ -52,14 +52,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//Force https
-function requireHTTPS(req, res, next) {
-  console.log(req.secure);
-  if (!req.secure && req.get('x-forwarded-proto') !== 'https') {
-    return res.redirect('https://' + req.get('host') + req.url);
-  }
-  next();
-}
-app.use(requireHTTPS);
-
 module.exports = app;
