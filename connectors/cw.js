@@ -20,6 +20,19 @@ const cw = new ConnectWiseRest({
     logger: (level, text, meta) => {} // optional, pass in logging function
 });
 
+function getCompanyID(identifier) {
+    return new Promise((resolve, reject) => {
+        if (identifier == 'DSM') resolve(250);
+        cw.CompanyAPI.Companies.getCompanies({
+            "conditions": 'identifier = "' + identifier + '"'
+        }).then(comp => {
+            resolve(comp[0].id);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+
 //Define API Call Functions Here
 module.exports = {
     getTicketById: function (id) {
@@ -33,17 +46,25 @@ module.exports = {
         });
     },
 
-    createSupportTicket: function (summary, companyName, board){
-        //TODO Reverse lookup company name to company id
-        var ticket = {"board": {"id": board}, "company": {"id": companyName}, "summary": summary};
-
+    createSupportTicket: function (summary, companyName, board) {
         return new Promise(function (resolve, reject) {
-            cw.ServiceDeskAPI.Tickets.createTicket(ticket).then(ticket => {
-                resolve(ticket);
-            }).catch(error => {
-                config.errWarn(error);
-                reject(error);
-            })
+            getCompanyID(companyName).then(id => {
+                var ticket = {
+                    "board": {
+                        "id": board
+                    },
+                    "company": {
+                        "id": id
+                    },
+                    "summary": summary
+                };
+                cw.ServiceDeskAPI.Tickets.createTicket(ticket).then(ticket => {
+                    resolve(ticket);
+                }).catch(error => {
+                    config.errWarn(error);
+                    reject(error);
+                })
+            });
         });
     }
 }

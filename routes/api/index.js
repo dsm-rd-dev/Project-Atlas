@@ -5,7 +5,6 @@ const cw = require('../../connectors/cw');
 
 
 module.exports = (User) => {
-    //TODO dynamic router allocation
     var cwRouter = require('./cw/cw');
 
     //Auth middleware for API Token

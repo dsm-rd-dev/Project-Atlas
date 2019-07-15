@@ -38,14 +38,14 @@ module.exports = (passport, User) => {
         scope: ['https://www.googleapis.com/auth/plus.login']
     }));
 
-    //TODO add redirect query param
+    //Usage /google/callback?redirect=https://example.com
     router.get('/google/callback', passport.authenticate('google', {
             failureRedirect: '/',
             failureFlash: true
         }),
         function (req, res) {
             console.log(req.session);
-            res.redirect('/');
+            res.redirect(req.params.redirect);
         }
     );
 
