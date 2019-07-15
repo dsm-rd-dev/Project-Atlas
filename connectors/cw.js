@@ -21,52 +21,38 @@ const cw = new ConnectWiseRest({
 });
 
 
-/*
-cw.ServiceDeskAPI.ServiceNotes.getServiceNotes(357242)
-    .then((Tickets) => {
-        //config.errNotice(Tickets.summary)
-        console.log(JSON.stringify(Tickets, null, 4))
-    })
-    .catch((error) =>{
-        console.log(JSON.stringify(error, null, 4))
-    });
-*/
-
 //Define API Call Functions Here
-
 module.exports = {
-    getNotes: function (ticket) {
-        cw.ServiceDeskAPI.ServiceNotes.getServiceNotes(ticket)
-            .then((Tickets) => {
-                //config.errNotice(Tickets)
-                //console.log(JSON.stringify(Tickets, null, 4))
-                console.log(Tickets.statusCode)
-            })
-            .catch((error) => {
-                console.log(JSON.stringify(error, null, 4))
-            })
-    },
+    // getNotes: function (ticket) {
+    //     cw.ServiceDeskAPI.ServiceNotes.getServiceNotes(ticket)
+    //         .then((Tickets) => {
+    //             //config.errNotice(Tickets)
+    //             //console.log(JSON.stringify(Tickets, null, 4))
+    //             console.log(Tickets.statusCode)
+    //         })
+    //         .catch((error) => {
+    //             console.log(JSON.stringify(error, null, 4))
+    //         })
+    // },
 
-    getComps: function (company) {
-        console.log("Getting Companies");
-        cw.CompanyAPI.Companies.getCompanies()
-            .then((comps) => {
-                //console.log(comps[1]['id'])
-                for (var key in comps) {
+    // getComps: function (company) {
+    //     console.log("Getting Companies");
+    //     cw.CompanyAPI.Companies.getCompanies()
+    //         .then((comps) => {
+    //             //console.log(comps[1]['id'])
+    //             for (var key in comps) {
 
-                    console.log("Company ID: " + comps[key]['id'] + " and Company Name: " + comps[key]['name'])
-                }
-            })
-            .catch((error) => {
-                console.log(JSON.stringify(error, null, 4))
-            })
-    },
+    //                 console.log("Company ID: " + comps[key]['id'] + " and Company Name: " + comps[key]['name'])
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(JSON.stringify(error, null, 4))
+    //         })
+    // },
 
     getTicketById: function (id) {
         return new Promise(function (resolve, reject) {
-            console.log("Getting ticket id: " + id);
             cw.ServiceDeskAPI.Tickets.getTicketById(id).then((result) => {
-                config.errSuccess("Ticket " + id + " fetched");
                 resolve(result);
             }).catch((error) => {
                 config.errWarn(error);
@@ -75,21 +61,11 @@ module.exports = {
         });
     },
 
-    createTicket: function (summary, companyId){
-        var ticket = {
-            "board": {
-                "id": 6
-            },
-            "company": {
-                "id": companyId
-            },
-            "summary": summary
-        };
+    createSupportTicket: function (summary, companyId, board){
+        var ticket = {"board": {"id": board}, "company": {"id": companyId}, "summary": summary};
 
         return new Promise(function (resolve, reject) {
-            console.log("Creating ticket for companyID: " + companyId);
             cw.ServiceDeskAPI.Tickets.createTicket(ticket).then(ticket => {
-                config.errSuccess("Ticket " + ticket.id + "created");
                 resolve(ticket);
             }).catch(error => {
                 config.errWarn(error);
