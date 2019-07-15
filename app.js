@@ -8,6 +8,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var db = require('./models');
 var User = require('./models/user')(db.sequelize, db.Sequelize.DataTypes);
+var cors = require('cors');
 
 var frontRouter = require('./routes/fontend/')(User);
 var apiRouter = require('./routes/api')(User);
@@ -23,6 +24,7 @@ app.use(session({
 app.use(passport.session());
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
