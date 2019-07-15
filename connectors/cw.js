@@ -20,36 +20,8 @@ const cw = new ConnectWiseRest({
     logger: (level, text, meta) => {} // optional, pass in logging function
 });
 
-
 //Define API Call Functions Here
 module.exports = {
-    // getNotes: function (ticket) {
-    //     cw.ServiceDeskAPI.ServiceNotes.getServiceNotes(ticket)
-    //         .then((Tickets) => {
-    //             //config.errNotice(Tickets)
-    //             //console.log(JSON.stringify(Tickets, null, 4))
-    //             console.log(Tickets.statusCode)
-    //         })
-    //         .catch((error) => {
-    //             console.log(JSON.stringify(error, null, 4))
-    //         })
-    // },
-
-    // getComps: function (company) {
-    //     console.log("Getting Companies");
-    //     cw.CompanyAPI.Companies.getCompanies()
-    //         .then((comps) => {
-    //             //console.log(comps[1]['id'])
-    //             for (var key in comps) {
-
-    //                 console.log("Company ID: " + comps[key]['id'] + " and Company Name: " + comps[key]['name'])
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log(JSON.stringify(error, null, 4))
-    //         })
-    // },
-
     getTicketById: function (id) {
         return new Promise(function (resolve, reject) {
             cw.ServiceDeskAPI.Tickets.getTicketById(id).then((result) => {
@@ -61,8 +33,9 @@ module.exports = {
         });
     },
 
-    createSupportTicket: function (summary, companyId, board){
-        var ticket = {"board": {"id": board}, "company": {"id": companyId}, "summary": summary};
+    createSupportTicket: function (summary, companyName, board){
+        //TODO Reverse lookup company name to company id
+        var ticket = {"board": {"id": board}, "company": {"id": companyName}, "summary": summary};
 
         return new Promise(function (resolve, reject) {
             cw.ServiceDeskAPI.Tickets.createTicket(ticket).then(ticket => {

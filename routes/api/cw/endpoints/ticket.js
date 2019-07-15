@@ -13,7 +13,7 @@ router.get('/:id', (req, res, next) => {
 
 //Create Ticket
 router.post('/', (req, res, next) => {
-    req.cw.createTicket(req.body.summary, req.body.companyId).then(results => {
+    req.cw.createTicket(req.body.summary, req.body.companyName, req.body.boardId).then(results => {
         res.set('Content-Type', 'application/json');
         res.send(results);
     }).catch(error => {
