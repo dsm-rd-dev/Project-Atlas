@@ -22,13 +22,14 @@ const cw = new ConnectWiseRest({
 
 function getCompanyID(identifier) {
     return new Promise((resolve, reject) => {
-        if (identifier == 'DSM') resolve(250);
+        if (identifier == 'System') resolve(250);
         cw.CompanyAPI.Companies.getCompanies({
             "conditions": 'identifier = "' + identifier + '"'
         }).then(comp => {
             resolve(comp[0].id);
         }).catch(err => {
-            reject(err);
+            console.log(err);
+            resolve(250);
         });
     });
 }
