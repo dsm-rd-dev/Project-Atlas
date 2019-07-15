@@ -16,6 +16,7 @@ var authRouter = require('./routes/auth')(passport, User);
 
 var app = express();
 app.use(cors());
+app.options('*', cors());
 app.use(passport.initialize());
 app.use(session({
   secret: "It's a secret to everyone",
