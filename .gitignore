@@ -65,3 +65,4 @@ config.json
 
 server.cert
 server.key
+pm-config.json
