@@ -62,3 +62,6 @@ typings/
 
 # ignore configs
 config.json
+
+server.cert
+server.key
