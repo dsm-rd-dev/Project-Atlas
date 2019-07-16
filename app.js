@@ -10,7 +10,6 @@ var db = require('./models');
 var User = require('./models/user')(db.sequelize, db.Sequelize.DataTypes);
 var cors = require('cors');
 
-var frontRouter = require('./routes/fontend/')(User);
 var apiRouter = require('./routes/api')(User);
 var authRouter = require('./routes/auth')(passport, User);
 
@@ -31,7 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', frontRouter);
 app.use('/api', apiRouter);
 app.use('/login', authRouter);
 
