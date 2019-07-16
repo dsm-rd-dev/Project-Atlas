@@ -20,23 +20,59 @@ const cw = new ConnectWiseRest({
     logger: (level, text, meta) => {} // optional, pass in logging function
 });
 
-function getCompanyID(identifier) {
-    return new Promise((resolve, reject) => {
-        if (identifier == 'System') resolve(250);
-        cw.CompanyAPI.Companies.getCompanies({
-            "conditions": 'identifier = "' + identifier + '"'
-        }).then(comp => {
-            if(comp.length > 0) resolve(comp[0].id);
-            else resolve(250);
-        }).catch(err => {
-            console.log(err);
-            resolve(250);
-        });
-    });
-}
+
 
 //Define API Call Functions Here
 module.exports = {
+
+    getCompanyID: function(identifier) {
+        return new Promise((resolve, reject) => {
+            if (identifier == 'System') resolve(250);
+            console.log(identifier);
+            cw.CompanyAPI.Companies.getCompanies({
+                "conditions": 'identifier = "' + identifier + '"'
+            }).then(comp => {
+                if(comp.length > 0) resolve(comp[0].id);
+                else resolve(250);
+            }).catch(err => {
+                console.log(err);
+                resolve(250);
+            });
+        });
+    },
+
+    getCompanies: function () {
+        return new Promise(function(resolve, reject) {
+            cw.CompanyAPI.Companies.getCompanies().then(comps => {
+                resolve(comps);
+            }).catch(err => {
+                reject(err);
+            });
+        })
+    },
+
+    getCompanyById: function (id) {
+        return new Promise(function(resolve, reject) {
+            cw.CompanyAPI.Companies.getCompanyById(id).then(comp => {
+                resolve(comp);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    },
+
+    getCompanyTickets: function(id) {
+        return new Promise(function(resolve, reject) {
+            cw.ServiceDeskAPI.Tickets.getTickets({
+                "conditions": 'company/id = ' + id
+            }).then(tickets => {
+                resolve(tickets);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    },
+
     getTicketById: function (id) {
         return new Promise(function (resolve, reject) {
             cw.ServiceDeskAPI.Tickets.getTicketById(id).then((result) => {

@@ -44,7 +44,6 @@ module.exports = (passport, User) => {
             failureFlash: true
         }),
         function (req, res) {
-            console.log(req.session);
             res.redirect(req.params.redirect);
         }
     );

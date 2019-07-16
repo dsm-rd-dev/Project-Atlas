@@ -10,7 +10,6 @@ module.exports = (User) => {
     //Auth middleware for API Token
     router.use((req, res, next) => {
         var token = req.get("Authorization");
-        console.log("Auth Token: " + token);
         User.findOne({where: {api_token: token}}).then(user => {
             if(user != null){
                 next();
