@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 const cw = require('../../connectors/cw');
 
-
-
-module.exports = (User) => {
+module.exports = (User, log) => {
     var cwRouter = require('./cw/cw');
 
     //Auth middleware for API Token
@@ -24,6 +22,7 @@ module.exports = (User) => {
     //Define API Connection Endpoints Here
     router.use('/cw', (req, res, next) => {
         req.cw = cw;
+        req.log = log;
         next();
     }, cwRouter);
 

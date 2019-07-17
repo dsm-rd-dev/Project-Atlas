@@ -35,8 +35,7 @@ module.exports = {
                 if(comp.length > 0) resolve(comp[0].id);
                 else resolve(250);
             }).catch(err => {
-                console.log(err);
-                resolve(250);
+                reject(err);
             });
         });
     },
@@ -80,7 +79,6 @@ module.exports = {
             cw.ServiceDeskAPI.Tickets.getTicketById(id).then((result) => {
                 resolve(result);
             }).catch((error) => {
-                config.errWarn(error);
                 reject(error);
             });
         });
@@ -88,7 +86,7 @@ module.exports = {
 
     createSupportTicket: function (summary, companyName, board) {
         return new Promise(function (resolve, reject) {
-            getCompanyID(companyName).then(id => {
+            module.exports.getCompanyID(companyName).then(id => {
                 var ticket = {
                     "board": {
                         "id": board
@@ -101,7 +99,6 @@ module.exports = {
                 cw.ServiceDeskAPI.Tickets.createTicket(ticket).then(ticket => {
                     resolve(ticket);
                 }).catch(error => {
-                    config.errWarn(error);
                     reject(error);
                 })
             });

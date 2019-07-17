@@ -5,24 +5,16 @@ var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var passport = require('passport');
 var db = require('./models');
 var User = require('./models/user')(db.sequelize, db.Sequelize.DataTypes);
 var cors = require('cors');
+var log = require('./config/erhandle');
 
-var apiRouter = require('./routes/api')(User);
-var authRouter = require('./routes/auth')(passport, User);
+var apiRouter = require('./routes/api')(User, log);
 
 var app = express();
 app.use(cors());
 app.options('*', cors());
-app.use(passport.initialize());
-app.use(session({
-  secret: "It's a secret to everyone",
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(passport.session());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,7 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', apiRouter);
-app.use('/login', authRouter);
 
 app.get('/express_backend', (req, res) => {
   res.send({ express: 'Your backend is working' });

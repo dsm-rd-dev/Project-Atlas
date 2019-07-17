@@ -7,6 +7,7 @@ router.get('/:id', (req, res, next) => {
         res.set('Content-Type', 'application/json');
         res.send(results);
     }).catch(error => {
+        req.log.errFail(error);
         res.send(error);
     });
 });
@@ -17,6 +18,7 @@ router.post('/', (req, res, next) => {
         res.set('Content-Type', 'application/json');
         res.send(results);
     }).catch(error => {
+        req.log.errFail(error);
         res.send(error);
     })
 });
