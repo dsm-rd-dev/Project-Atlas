@@ -61,10 +61,12 @@ module.exports = {
         });
     },
 
-    getCompanyTickets: function(id) {
+    getCompanyTickets: function(id, page) {
         return new Promise(function(resolve, reject) {
             cw.ServiceDeskAPI.Tickets.getTickets({
-                "conditions": 'company/id = ' + id
+                "conditions": 'company/id = ' + id,
+                "page": page,
+                "orderBy": "dateEntered des"
             }).then(tickets => {
                 resolve(tickets);
             }).catch(err => {

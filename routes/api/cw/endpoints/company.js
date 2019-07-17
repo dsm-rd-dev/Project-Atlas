@@ -18,7 +18,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/:id/tickets', (req, res, next) => {
-    req.cw.getCompanyTickets(req.params.id).then(tickets => {
+    req.cw.getCompanyTickets(req.params.id, (req.query.page ? req.query.page : 1)).then(tickets => {
         res.send(tickets);
     }).catch(err => {
         res.send(err);
