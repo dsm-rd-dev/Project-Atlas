@@ -66,7 +66,7 @@ module.exports = {
             cw.ServiceDeskAPI.Tickets.getTickets({
                 "conditions": 'company/id = ' + id,
                 "page": page,
-                "orderBy": "dateEntered des"
+                "orderBy": "dateEntered desc"
             }).then(tickets => {
                 resolve(tickets);
             }).catch(err => {
