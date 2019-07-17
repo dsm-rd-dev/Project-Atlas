@@ -64,7 +64,7 @@ module.exports = {
     getCompanyTickets: function(id, page) {
         return new Promise(function(resolve, reject) {
             cw.ServiceDeskAPI.Tickets.getTickets({
-                "conditions": 'company/id = ' + id,
+                "conditions": 'company/id = ' + id + ' and closedFlag = false',
                 "page": page,
                 "orderBy": "dateEntered desc"
             }).then(tickets => {
