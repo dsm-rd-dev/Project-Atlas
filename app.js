@@ -18,7 +18,8 @@ var authRouter = require('./routes/auth')(db, log);
 
 //CORS
 const approvedOrigins = [
-  "vcd.cloud.dsm.net"
+  "vcd.cloud.dsm.net",
+  "localhost"
 ]
 app.use(cors());
 app.options('*', cors());
@@ -30,6 +31,10 @@ app.use(function(req, res, next) {
   }
   next();
 });
+
+app.get('/test', (req, res, next) => {
+  res.send({"Test": "test"});
+})
 
 //Body Parsing
 app.use(logger('dev'));
