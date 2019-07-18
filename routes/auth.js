@@ -2,9 +2,9 @@ const bcrypt = require('bcryptjs');
 var express = require('express');
 var router = express.Router();
 
-module.exports = (User, log, pass) => {
+module.exports = (db, log) => {
     router.post('/login', (req, res, next) => {
-        User.findOne({
+        db.models.User.findOne({
             where: {
                 username: req.body.username
             }

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const cw = require('../../connectors/cw');
 
-module.exports = (User, log) => {
+module.exports = (db, log) => {
     var cwRouter = require('./cw/cw');
 
     //Auth middleware for API Token
@@ -11,17 +11,23 @@ module.exports = (User, log) => {
         if (token == null) {
             res.status(401).end();
         } else {
-            User.findOne({
+            db.sequelize.models.User.findOne({
                 where: {
                     api_token: token
-                }
+                },
+                include: [{
+                    model: db.sequelize.models.Role
+                }]
             }).then(user => {
                 if (user != null) {
+                    req.role = JSON.parse(user.Role.definition);
+                    req.user = user;
                     next();
                 } else {
                     res.status(401).end();
                 }
             }).catch(err => {
+                console.log(err);
                 res.status(500).end();
             });
         }

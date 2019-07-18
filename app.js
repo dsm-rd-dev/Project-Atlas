@@ -10,13 +10,11 @@ var cors = require('cors');
 
 //Sequilize Model Initialization
 var db = require('./models');
-var User = require('./models/user')(db.sequelize, db.Sequelize.DataTypes);
-
 var app = express();
 
 //Routers
-var apiRouter = require('./routes/api')(User, log);
-var authRouter = require('./routes/auth')(User, log);
+var apiRouter = require('./routes/api')(db, log);
+var authRouter = require('./routes/auth')(db, log);
 
 //CORS
 const approvedOrigins = [
