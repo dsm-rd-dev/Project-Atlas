@@ -19,11 +19,17 @@ var apiRouter = require('./routes/api')(User, log);
 var authRouter = require('./routes/auth')(User, log);
 
 //CORS
+const approvedOrigins = [
+  "vcd.cloud.dsm.net"
+]
 app.use(cors());
 app.options('*', cors());
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  var origin = req.get('origin');
+  if(approvedOrigins.includes(origin)){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  }
   next();
 });
 
