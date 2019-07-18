@@ -8,6 +8,7 @@ router.get('/:id', (req, res, next) => {
         res.send(results);
     }).catch(error => {
         req.log.errFail(error);
+        res.status(500);
         res.send(error);
     });
 });
@@ -19,6 +20,7 @@ router.post('/', (req, res, next) => {
         res.send(results);
     }).catch(error => {
         req.log.errFail(error);
+        res.status(500);
         res.send(error);
     })
 });

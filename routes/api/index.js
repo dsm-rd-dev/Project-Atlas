@@ -8,15 +8,23 @@ module.exports = (User, log) => {
     //Auth middleware for API Token
     router.use((req, res, next) => {
         var token = req.get("Authorization");
-        User.findOne({where: {api_token: token}}).then(user => {
-            if(user != null){
-                next();
-            }else{
-                res.status(401).end();
-            }
-        }).catch(err => {
-            res.status(500).end();
-        });
+        if (token == null) {
+            res.status(401).end();
+        } else {
+            User.findOne({
+                where: {
+                    api_token: token
+                }
+            }).then(user => {
+                if (user != null) {
+                    next();
+                } else {
+                    res.status(401).end();
+                }
+            }).catch(err => {
+                res.status(500).end();
+            });
+        }
     });
 
     //Define API Connection Endpoints Here

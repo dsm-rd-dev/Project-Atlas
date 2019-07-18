@@ -6,6 +6,7 @@ router.get('/', (req, res, next) => {
         res.send(comps);
     }).catch(error => {
         req.log.errFail(error);
+        res.status(500);
         res.send(error);
     });
 });
@@ -15,6 +16,7 @@ router.get('/:id', (req, res, next) => {
         res.send(comp);
     }).catch(err => {
         req.log.errFail(error);
+        res.status(500);
         res.send(err);
     });
 });
@@ -24,6 +26,7 @@ router.get('/:id/tickets', (req, res, next) => {
         res.send(tickets);
     }).catch(err => {
         req.log.errFail(error);
+        res.status(500);
         res.send(err);
     });
 });
@@ -33,6 +36,7 @@ router.get('/:name/lookup', (req, res, next) => {
         res.send({"id": id});
     }).catch(err => {
         req.log.errFail(error);
+        res.status(500);
         res.send(err);
     })
 })
