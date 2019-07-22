@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
 User.associate = (models) => {
-  User.belongsTo(models.Role);
+  User.belongsTo(models.Role, {foreignKey: 'role_id'});
 }
 
-User.prototype.generateHash = function generateHash() {
-  return bcrypt.hash(password, bcrypt.genSaltSync(8));
+User.prototype.generateHash = function generateHash(password){
+  return bcrypt.hash(password, bcrypt.genSalt(8));
 }
 
 User.prototype.validPassword = function validPassword(password) {

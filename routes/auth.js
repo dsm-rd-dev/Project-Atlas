@@ -1,10 +1,8 @@
-const bcrypt = require('bcryptjs');
 var express = require('express');
 var router = express.Router();
 
 module.exports = (db, log) => {
     router.post('/login', (req, res, next) => {
-        console.log("Login");
         db.sequelize.models.User.findOne({
             where: {
                 username: req.body.username
