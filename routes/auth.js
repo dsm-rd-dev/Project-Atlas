@@ -4,7 +4,8 @@ var router = express.Router();
 
 module.exports = (db, log) => {
     router.post('/login', (req, res, next) => {
-        db.models.User.findOne({
+        console.log("Login");
+        db.sequelize.models.User.findOne({
             where: {
                 username: req.body.username
             }

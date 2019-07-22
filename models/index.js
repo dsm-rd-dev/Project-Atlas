@@ -15,9 +15,6 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-const Role = require('./role')(sequelize, Sequelize);
-const User = require('./user')(sequelize, Sequelize, Role);
-
 fs
   .readdirSync(__dirname)
   .filter(file => {
