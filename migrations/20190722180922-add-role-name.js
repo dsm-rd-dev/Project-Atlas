@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.addColumn(
-      'roles',
+      'Roles',
       'name',
       Sequelize.STRING
     );
@@ -11,7 +11,7 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.removeColumn(
-      'roles',
+      'Roles',
       'name'
     )
   }
