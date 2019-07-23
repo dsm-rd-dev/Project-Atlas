@@ -40,10 +40,14 @@ module.exports = {
         });
     },
 
-    getCompanies: function () {
+    getCompanies: function (page=1, pageSize=25, order="name asc", search="") {
         return new Promise(function(resolve, reject) {
-            cw.CompanyAPI.Companies.getCompanies().then(comps => {
-                resolve(comps);
+            cw.CompanyAPI.Companies.getCompanies({"page": page, "orderBy": order, "pageSize": pageSize, "conditions": `identifier contains "${search}"`}).then(comps => {
+                cw.CompanyAPI.Companies.getCompaniesCount({"conditions": `identifier contains "${search}"`}).then(compCount => {
+                    resolve({pages: Math.ceil(compCount.count/pageSize), list: comps});
+                }).catch(err => {
+                    reject(err);
+                })
             }).catch(err => {
                 reject(err);
             });
@@ -68,6 +72,16 @@ module.exports = {
                 "orderBy": "dateEntered desc"
             }).then(tickets => {
                 resolve(tickets);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    },
+
+    updateTicketStatusById: function(id, status){
+        return new Promise(function(resolve, reject) {
+            cw.ServiceDeskAPI.Tickets.updateTicketStatusByName(id, status).then(ticket => {
+                resolve(ticket);
             }).catch(err => {
                 reject(err);
             });

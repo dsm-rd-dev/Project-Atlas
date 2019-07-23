@@ -33,4 +33,18 @@ router.post('/', (req, res, next) => {
     }
 });
 
+router.patch('/', (req, res, next) => {
+    if(req.role.admin || req.role.cw.ticket.includes("write")) {
+        req.cw.updateTicketStatusById(req.body.id, req.body.status).then(ticket => {
+            res.send(ticket);
+        }).catch(err => {
+            req.log.errFail(err);
+            res.status(500);
+            res.send(err);
+        })
+    } else {
+        res.status(401).end();
+    }
+})
+
 module.exports = router;

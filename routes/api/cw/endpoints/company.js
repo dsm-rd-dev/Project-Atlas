@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', (req, res, next) => {
     if (req.role.admin || req.role.cw.company.includes("read")) {
-        req.cw.getCompanies().then(comps => {
+        req.cw.getCompanies(req.query.page, req.query.pageSize, req.query.order, req.query.search).then(comps => {
             res.send(comps);
         }).catch(error => {
             req.log.errFail(error);

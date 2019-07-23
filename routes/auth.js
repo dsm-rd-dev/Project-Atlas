@@ -2,8 +2,36 @@ var express = require('express');
 var router = express.Router();
 
 module.exports = (db, log) => {
+
+    const User = db.sequelize.models.User;
+    const Role = db.sequelize.models.Role;
+
+    function admin(req, res, next) {
+        User.findOne({
+            where: {
+                api_token: req.get('Authorization')
+            },
+            include: [{
+                model: Role
+            }]
+        }).then(user => {
+            if(user != null){
+                if(JSON.parse(user.Role.definition).admin){
+                    next();
+                }else{
+                    res.status(401).end();
+                }
+            }else{
+                res.status(401).end();
+            }
+        }).catch(err => {
+            console.log(err);
+            res.status(500).send(err).end();
+        })
+    }
+
     router.post('/login', (req, res, next) => {
-        db.sequelize.models.User.findOne({
+        User.findOne({
             where: {
                 username: req.body.username
             }
@@ -35,6 +63,19 @@ module.exports = (db, log) => {
             }
         }).catch(err => {
             log.errFail(err.message);
+            res.status(500).send(err).end();
+        })
+    });
+
+    router.get('/users', admin, (req, res, next) => {
+        User.findAll({
+            attributes: [ 'username' ],
+            include: [{
+                model: Role
+            }]
+        }).then(users => {
+            res.send(users);
+        }).catch(err => {
             res.status(500).send(err).end();
         })
     });
