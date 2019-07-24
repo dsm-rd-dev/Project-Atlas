@@ -64,14 +64,22 @@ module.exports = {
         });
     },
 
-    getCompanyTickets: function(id, page) {
+    getCompanyTickets: function(id, page=1, pageSize=25, search="") {
         return new Promise(function(resolve, reject) {
+            const conditions = `company/id = ${id} and closedFlag = false`;
             cw.ServiceDeskAPI.Tickets.getTickets({
-                "conditions": 'company/id = ' + id + ' and closedFlag = false',
                 "page": page,
-                "orderBy": "dateEntered desc"
+                "orderBy": "dateEntered desc",
+                "pageSize": pageSize,
+                "conditions": conditions,
             }).then(tickets => {
-                resolve(tickets);
+                cw.ServiceDeskAPI.Tickets.getTicketsCount({"conditions": conditions}).then(compCount => {
+                    console.log(compCount);
+                    console.log(compCount.count/pageSize);
+                    resolve({pages: Math.ceil(compCount.count/pageSize), list: tickets});
+                }).catch(err => {
+                    reject(err);
+                })
             }).catch(err => {
                 reject(err);
             });

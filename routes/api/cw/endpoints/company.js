@@ -31,10 +31,11 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/:id/tickets', (req, res, next) => {
     if (req.role.admin || req.role.cw.company.includes("read")) {
-        req.cw.getCompanyTickets(req.params.id, (req.query.page ? req.query.page : 1)).then(tickets => {
+        req.cw.getCompanyTickets(req.params.id, req.query.page, req.query.pageSize, req.query.search).then(tickets => {
             res.send(tickets);
         }).catch(err => {
-            req.log.errFail(error);
+            console.log(err);
+            req.log.errFail(err);
             res.status(500);
             res.send(err);
         });
