@@ -22,7 +22,11 @@ module.exports = (db, log) => {
                 if(app != null){
                     req.role = JSON.parse(app.Role.definition);
                     req.user = app;
-                    next();
+                    if(req.role.disabled){
+                        res.status(401).end();
+                    }else{
+                        next();
+                    }
                 }else{
                     res.status(401).end();
                 }
@@ -42,7 +46,11 @@ module.exports = (db, log) => {
                 if (user != null) {
                     req.role = JSON.parse(user.Role.definition);
                     req.user = user;
-                    next();
+                    if(req.role.disabled){
+                        res.status(401).end();
+                    }else{
+                        next();
+                    }
                 } else {
                     res.status(401).end();
                 }
