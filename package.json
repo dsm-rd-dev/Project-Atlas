@@ -37,6 +37,7 @@
     "request": "^2.88.0",
     "sequelize": "^5.10.0",
     "sequelize-cli": "^5.5.0",
+    "uuid": "^3.3.2",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",

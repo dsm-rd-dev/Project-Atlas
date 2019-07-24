@@ -10,7 +10,27 @@ module.exports = (db, log) => {
         var token = req.get("Authorization");
         if (token == null) {
             res.status(401).end();
-        } else {
+        } else if(token.startsWith("app+")) { //App
+            db.sequelize.models.App.findOne({
+                where: {
+                    key: token.substr(4)
+                },
+                include: [{
+                    model: db.sequelize.models.Role
+                }]
+            }).then(app => {
+                if(app != null){
+                    req.role = JSON.parse(app.Role.definition);
+                    req.user = app;
+                    next();
+                }else{
+                    res.status(401).end();
+                }
+            }).catch(err => {
+                console.log(err);
+                res.status(500).end();
+            })
+        } else {    //Standard User
             db.sequelize.models.User.findOne({
                 where: {
                     api_token: token
