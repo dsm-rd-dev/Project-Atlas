@@ -13,7 +13,7 @@ User.associate = (models) => {
 }
 
 User.prototype.generateHash = function generateHash(password){
-  return bcrypt.hash(password, bcrypt.genSalt(8));
+  return bcrypt.hash(password, bcrypt.genSaltSync(8));
 }
 
 User.prototype.validPassword = function validPassword(password) {

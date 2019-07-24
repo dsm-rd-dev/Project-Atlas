@@ -163,11 +163,18 @@ module.exports = (db, log) => {
     });
 
     router.post('/user', requireAdmin, (req, res, next) => {
-        const newUser = User.build({ username: req.body.username, role_id: req.body.role });
-        newUser.password = newUser.generateHash(req.body.password);
-        newUser.save().then(user => {
-            res.send({message: "User created successfully"});
+        const newUser = User.build({ username: req.body.username, role_id: req.body.role_id });
+        console.log(req.body.password)
+        newUser.generateHash(req.body.password).then(hash => {
+            newUser.password = hash;
+            newUser.save().then(user => {
+                res.send({message: "User created successfully"});
+            }).catch(err => {
+                console.log(err);
+                res.status(500).send(err).end();
+            })
         }).catch(err => {
+            console.log(err);
             res.status(500).send(err).end();
         })
     })
