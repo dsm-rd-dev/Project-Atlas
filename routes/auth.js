@@ -153,6 +153,24 @@ module.exports = (db, log) => {
         });
     });
 
+    router.patch('/role', requireAdmin, (req, res, next) => {
+        Role.findOne({
+            where: {
+                id: req.body.id
+            }
+        }).then(role => {
+            if('name' in req.body) role.name = req.body.name;
+            if('definition' in req.body) role.definition = req.body.definition;
+            role.save().then(role => {
+                res.send(role);
+            }).catch(err => {
+                res.status(500).send(err).end();
+            });
+        }).catch(err => {
+            res.status(500).send(err).end();
+        })
+    })
+
     router.post('/role', requireAdmin, (req, res, next) => {
         const newRole = Role.build({ name: req.body.name, definition: req.body.definition });
         newRole.save().then(role => {

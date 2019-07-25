@@ -8,6 +8,10 @@ var logger = require('morgan');
 var path = require('path');
 var cors = require('cors');
 
+var bcrypt = require('bcryptjs');
+
+console.log(bcrypt.hashSync('password', bcrypt.genSaltSync(8)));
+
 //Sequilize Model Initialization
 var db = require('./models');
 var app = express();
