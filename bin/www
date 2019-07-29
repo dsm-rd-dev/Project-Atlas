@@ -6,7 +6,7 @@
 
 var app = require('../app');
 var debug = require('debug')('middleman:server');
-var https = require('https');
+var http = require('http');
 var fs = require('fs');
 
 /**
@@ -20,10 +20,7 @@ app.set('port', port);
  * Create HTTPS server.
  */
 
-var server = https.createServer({
-  key: fs.readFileSync((process.env.NODE_ENV=='development'?'./bin/server.key':'/certs/server.key')),
-  cert: fs.readFileSync((process.env.NODE_ENV=='development'?'./bin/server.cert':'/certs/server.crt'))
-}, app);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
