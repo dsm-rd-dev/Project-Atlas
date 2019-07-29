@@ -88,6 +88,16 @@ module.exports = (db, log) => {
         })
     });
 
+    router.post('/app', requireAdmin, (req, res, next) => {
+        const newApp = App.build({name: req.body.name, role_id: req.body.role_id});
+        newApp.key = newApp.generateUUID();
+        newApp.save().then(app => {
+            res.send(app);
+        }).catch(err => {
+            res.status(500).send(err).end();
+        })
+    })
+
     router.get('/app', requireAdmin, (req, res, next) => {
         App.findAll({
             include: [{
