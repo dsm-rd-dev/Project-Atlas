@@ -7,11 +7,7 @@ router.get('/:id', (req, res, next) => {
         req.cw.getTicketById(req.params.id).then(results => {
             res.set('Content-Type', 'application/json');
             res.send(results);
-        }).catch(error => {
-            req.log.errFail(error);
-            res.status(500);
-            res.send(error);
-        });
+        }).catch(next);
     } else {
         res.status(401).end();
     }
@@ -23,11 +19,7 @@ router.post('/', (req, res, next) => {
         req.cw.createSupportTicket(req.body.summary, req.body.companyName, req.body.boardId).then(results => {
             res.set('Content-Type', 'application/json');
             res.send(results);
-        }).catch(error => {
-            req.log.errFail(error);
-            res.status(500);
-            res.send(error);
-        })
+        }).catch(next);
     } else {
         res.status(401).end();
     }
@@ -37,11 +29,7 @@ router.patch('/', (req, res, next) => {
     if(req.role.admin || req.role.cw.ticket.includes("write")) {
         req.cw.updateTicketStatusById(req.body.id, req.body.status).then(ticket => {
             res.send(ticket);
-        }).catch(err => {
-            req.log.errFail(err);
-            res.status(500);
-            res.send(err);
-        })
+        }).catch(next);
     } else {
         res.status(401).end();
     }

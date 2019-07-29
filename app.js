@@ -56,13 +56,16 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  log.errFail(err.message);
+  log.errFail(err);
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // send error
   res.status(err.status || 500);
-  res.send("Error " + (err.status?err.status:500) + " " + err.message);
+  res.send({ status: err.status, message: err.message });
 });
 
 module.exports = app;

@@ -30,10 +30,7 @@ module.exports = (db, log) => {
                 }else{
                     res.status(401).end();
                 }
-            }).catch(err => {
-                console.log(err);
-                res.status(500).end();
-            })
+            }).catch(next);
         } else {    //Standard User
             db.sequelize.models.User.findOne({
                 where: {
@@ -54,10 +51,7 @@ module.exports = (db, log) => {
                 } else {
                     res.status(401).end();
                 }
-            }).catch(err => {
-                console.log(err);
-                res.status(500).end();
-            });
+            }).catch(next);
         }
     });
 

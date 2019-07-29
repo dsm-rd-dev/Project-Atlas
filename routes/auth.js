@@ -34,10 +34,7 @@ module.exports = (db, log) => {
                 } else {
                     res.status(401).end();
                 }
-            }).catch(err => {
-                console.log(err);
-                res.status(500).end();
-            });
+            }).catch(next);
         }
     }
 
@@ -71,21 +68,12 @@ module.exports = (db, log) => {
                                 "auth": user.api_token
                             });
                         })
-                    } else res.status(401).send({
-                        "code": 401,
-                        "message": "Incorrect Username/Password"
-                    }).end();
+                    } else res.status(401).end();
                 })
             } else {
-                res.status(401).send({
-                    "code": 401,
-                    "message": "Incorrect Username/Password"
-                }).end();
+                res.status(401).end();
             }
-        }).catch(err => {
-            log.errFail(err.message);
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     });
 
     router.post('/app', requireAdmin, (req, res, next) => {
@@ -93,9 +81,7 @@ module.exports = (db, log) => {
         newApp.key = newApp.generateUUID();
         newApp.save().then(app => {
             res.send(app);
-        }).catch(err => {
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     })
 
     router.get('/app', requireAdmin, (req, res, next) => {
@@ -105,9 +91,7 @@ module.exports = (db, log) => {
             }]
         }).then(apps => {
             res.send(apps);
-        }).catch(err => {
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     });
 
     router.get('/app/:id', requireAdmin, (req, res, next) => {
@@ -120,9 +104,7 @@ module.exports = (db, log) => {
             }]
         }).then(apps => {
             res.send(apps);
-        }).catch(err => {
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     });
 
     router.patch('/app', requireAdmin, (req, res, next) => {
@@ -138,17 +120,13 @@ module.exports = (db, log) => {
             }).catch(err => {
                 res.status(500).send(err).end();
             });
-        }).catch(err => {
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     })
 
     router.get('/role', requireAdmin, (req, res, next) => {
         Role.findAll().then(roles => {
             res.send(roles);
-        }).catch(err => {
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     })
 
     router.get('/role/:id', requireAdmin, (req, res, next) => {
@@ -158,9 +136,7 @@ module.exports = (db, log) => {
             }
         }).then(role => {
             res.send(role);
-        }).catch(err => {
-            res.status(500).send(err).end();
-        });
+        }).catch(next);
     });
 
     router.patch('/role', requireAdmin, (req, res, next) => {
@@ -176,18 +152,14 @@ module.exports = (db, log) => {
             }).catch(err => {
                 res.status(500).send(err).end();
             });
-        }).catch(err => {
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     })
 
     router.post('/role', requireAdmin, (req, res, next) => {
         const newRole = Role.build({ name: req.body.name, definition: req.body.definition });
         newRole.save().then(role => {
             res.send(role);
-        }).catch(err => {
-            res.status(500).send(err).end();
-        });
+        }).catch(next);
     });
 
     router.post('/user', requireAdmin, (req, res, next) => {
@@ -201,10 +173,7 @@ module.exports = (db, log) => {
                 console.log(err);
                 res.status(500).send(err).end();
             })
-        }).catch(err => {
-            console.log(err);
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     })
 
     router.get('/user', requireAdmin, (req, res, next) => {
@@ -215,9 +184,7 @@ module.exports = (db, log) => {
             }]
         }).then(users => {
             res.send(users);
-        }).catch(err => {
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     });
 
     router.get('/user/:id', loggedIn, (req, res, next) => {
@@ -231,9 +198,7 @@ module.exports = (db, log) => {
                 }]
             }).then(user => {
                 res.send(user);
-            }).catch(err => {
-                res.status(500).send(err).end();
-            })
+            }).catch(next);
         }
     });
 
@@ -252,10 +217,7 @@ module.exports = (db, log) => {
                 console.log(err);
                 res.status(500).send(err).end();
             });
-        }).catch(err => {
-            console.log(err);
-            res.status(500).send(err).end();
-        })
+        }).catch(next);
     });
 
     router.get('/me', loggedIn, (req, res, next) => {
