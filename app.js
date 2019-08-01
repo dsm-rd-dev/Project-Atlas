@@ -4,19 +4,21 @@ var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var log = require('./config/erhandle');
 var express = require('express');
+var passport = require('passport');
 var logger = require('morgan');
 var path = require('path');
 var cors = require('cors');
-
-var bcrypt = require('bcryptjs');
 
 //Sequilize Model Initialization
 var db = require('./models');
 var app = express();
 
+app.use(passport.initialize());
+require('./config/passport')(passport, db);
+
 //Routers
-var apiRouter = require('./routes/api')(db, log);
-var authRouter = require('./routes/auth')(db, log);
+var apiRouter = require('./routes/api')(db, log, passport);
+var authRouter = require('./routes/auth')(db, log, passport);
 
 //CORS
 const approvedOrigins = [
@@ -63,7 +65,7 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  console.log(err);
   // send error
   res.status(err.status || 500);
   res.send({ status: err.status, message: err.message });

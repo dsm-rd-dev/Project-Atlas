@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const cw = require('../../connectors/cw');
 
-module.exports = (db, log) => {
+module.exports = (db, log, passport) => {
     var cwRouter = require('./cw/cw');
 
     //Auth middleware for API Token
@@ -11,12 +11,12 @@ module.exports = (db, log) => {
         if (token == null) {
             res.status(401).end();
         } else if(token.startsWith("app+")) { //App
-            db.sequelize.models.App.findOne({
+            db.App.findOne({
                 where: {
                     key: token.substr(4)
                 },
                 include: [{
-                    model: db.sequelize.models.Role
+                    model: db.Role
                 }]
             }).then(app => {
                 if(app != null){
@@ -32,26 +32,22 @@ module.exports = (db, log) => {
                 }
             }).catch(next);
         } else {    //Standard User
-            db.sequelize.models.User.findOne({
-                where: {
-                    api_token: token
-                },
-                include: [{
-                    model: db.sequelize.models.Role
-                }]
-            }).then(user => {
-                if (user != null) {
-                    req.role = JSON.parse(user.Role.definition);
-                    req.user = user;
-                    if(req.role.disabled){
-                        res.status(401).end();
-                    }else{
-                        next();
-                    }
-                } else {
+            console.log("Authorizing standard user");
+            passport.authenticate('jwt', {session: false}, (error, user) => {
+                if(error) next(error);
+                if(user != null){
+                console.log(error);
+                req.user = user;
+                req.role = JSON.parse(user.Role.definition);
+                if(req.role.disabled) {
                     res.status(401).end();
+                }else{
+                    next();
                 }
-            }).catch(next);
+            }else{
+                res.status(401).end();
+            }
+            })(req, res, next);
         }
     });
 

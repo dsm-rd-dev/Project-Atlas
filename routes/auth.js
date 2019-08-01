@@ -1,40 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var jwt = require('jsonwebtoken');
+var config = require('../config/config.json');
 
-module.exports = (db, log) => {
-
-    const User = db.sequelize.models.User;
-    const Role = db.sequelize.models.Role;
-    const App = db.sequelize.models.App;
+module.exports = (db, log, passport) => {
 
     function loggedIn(req, res, next) {
         var token = req.get("Authorization");
         if (token == null) {
             res.status(401).end();
         } else {
-            db.sequelize.models.User.findOne({
-                where: {
-                    api_token: token
-                },
-                attributes: {
-                    exclude: ['password']
-                },
-                include: [{
-                    model: db.sequelize.models.Role
-                }]
-            }).then(user => {
-                if (user != null) {
-                    req.role = JSON.parse(user.Role.definition);
+            passport.authenticate('jwt', {session: false}, (error, user) => {
+                if(error) res.send(error).end();
+                if(user){
                     req.user = user;
-                    if(req.role.disabled){
+                    req.role = JSON.parse(user.Role.definition);
+                    if(req.role.disabled) {
                         res.status(401).end();
                     }else{
                         next();
                     }
-                } else {
+                }else{
                     res.status(401).end();
                 }
-            }).catch(next);
+            })(req, res, next);
         }
     }
 
@@ -49,7 +38,7 @@ module.exports = (db, log) => {
     var requireAdmin = [loggedIn, admin];
 
     router.post('/login', (req, res, next) => {
-        User.findOne({
+        db.User.findOne({
             where: {
                 username: req.body.username
             }
@@ -57,17 +46,13 @@ module.exports = (db, log) => {
             if (user != null) {
                 user.validPassword(req.body.password).then(valid => {
                     if (valid) {
-                        //Generate random API Token
-                        var token = Math.random().toString(36).slice(-8);
+                        const token = jwt.sign(user.toJSON(), config.secret, {
+                            expiresIn: 604000
+                        });
 
-                        //Store with User
-                        user.update({api_token: token}).then(user => {
-
-                            //Return to User
-                            res.send({
-                                "auth": user.api_token
-                            });
-                        })
+                        res.send({
+                            auth: 'JWT ' + token
+                        });
                     } else res.status(401).end();
                 })
             } else {
@@ -85,9 +70,9 @@ module.exports = (db, log) => {
     })
 
     router.get('/app', requireAdmin, (req, res, next) => {
-        App.findAll({
+        db.App.findAll({
             include: [{
-                model: Role
+                model: db.Role
             }]
         }).then(apps => {
             res.send(apps);
@@ -95,12 +80,12 @@ module.exports = (db, log) => {
     });
 
     router.get('/app/:id', requireAdmin, (req, res, next) => {
-        App.findOne({
+        db.App.findOne({
             where: {
                 id: req.params.id
             },
             include: [{
-                model: Role
+                model: db.Role
             }]
         }).then(apps => {
             res.send(apps);
@@ -108,7 +93,7 @@ module.exports = (db, log) => {
     });
 
     router.patch('/app', requireAdmin, (req, res, next) => {
-        App.findOne({
+        db.App.findOne({
             where: {
                 id: req.body.id
             }
@@ -124,13 +109,13 @@ module.exports = (db, log) => {
     })
 
     router.get('/role', requireAdmin, (req, res, next) => {
-        Role.findAll().then(roles => {
+        db.Role.findAll().then(roles => {
             res.send(roles);
         }).catch(next);
     })
 
     router.get('/role/:id', requireAdmin, (req, res, next) => {
-        Role.findOne({
+        db.Role.findOne({
             where: {
                 id: req.params.id
             }
@@ -140,7 +125,7 @@ module.exports = (db, log) => {
     });
 
     router.patch('/role', requireAdmin, (req, res, next) => {
-        Role.findOne({
+        db.Role.findOne({
             where: {
                 id: req.body.id
             }
@@ -156,14 +141,14 @@ module.exports = (db, log) => {
     })
 
     router.post('/role', requireAdmin, (req, res, next) => {
-        const newRole = Role.build({ name: req.body.name, definition: req.body.definition });
+        const newRole = db.Role.build({ name: req.body.name, definition: req.body.definition });
         newRole.save().then(role => {
             res.send(role);
         }).catch(next);
     });
 
     router.post('/user', requireAdmin, (req, res, next) => {
-        const newUser = User.build({ username: req.body.username, role_id: req.body.role_id });
+        const newUser = db.User.build({ username: req.body.username, role_id: req.body.role_id });
         console.log(req.body.password)
         newUser.generateHash(req.body.password).then(hash => {
             newUser.password = hash;
@@ -177,10 +162,10 @@ module.exports = (db, log) => {
     })
 
     router.get('/user', requireAdmin, (req, res, next) => {
-        User.findAll({
+        db.User.findAll({
             attributes: [ 'username', 'id' ],
             include: [{
-                model: Role
+                model: db.Role
             }]
         }).then(users => {
             res.send(users);
@@ -189,12 +174,12 @@ module.exports = (db, log) => {
 
     router.get('/user/:id', loggedIn, (req, res, next) => {
         if(req.role.admin || req.user.id == req.params.id){
-            User.findOne({
+            db.User.findOne({
                 where: {
                     id: req.params.id
                 },
                 include: [{
-                    model: Role
+                    model: db.Role
                 }]
             }).then(user => {
                 res.send(user);
@@ -203,7 +188,7 @@ module.exports = (db, log) => {
     });
 
     router.patch('/user', requireAdmin, (req, res, next) => {
-        User.findOne({
+        db.User.findOne({
             where: {
                 id: req.body.id
             }
