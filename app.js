@@ -21,7 +21,8 @@ var authRouter = require('./routes/auth')(db, log);
 //CORS
 const approvedOrigins = [
   "vcd.cloud.dsm.net",
-  "localhost"
+  "localhost",
+  "10.70.117.180"
 ]
 app.use(cors());
 app.options('*', cors());

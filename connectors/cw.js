@@ -33,7 +33,7 @@ module.exports = {
                 "conditions": 'identifier = "' + identifier + '"'
             }).then(comp => {
                 if(comp.length > 0) resolve(comp[0].id);
-                else resolve(250);
+                else resolve(-1);
             }).catch(err => {
                 reject(err);
             });
