@@ -1,12 +1,12 @@
 const ConnectWiseRest = require('connectwise-rest');
-const config = require('../config/erhandle.js');
+const config = require('../config/config.json');
+
 
 const cw = new ConnectWiseRest({
     companyId: 'dsm',
     companyUrl: 'connect.dsm.net',
-    publicKey: process.env.cwApiusr,
-    privateKey: process.env.cwApipwd,
-    //clientId: '250',
+    publicKey: config.cwApiusr,
+    privateKey: config.cwApipwd,
     entryPoint: 'v4_6_release', // optional, defaults to 'v4_6_release'
     timeout: 20000, // optional, request connection timeout in ms, defaults to 20000
     retry: false, // optional, defaults to false
