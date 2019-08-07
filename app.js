@@ -3,6 +3,8 @@ require('dotenv').config();
 var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var log = require('./config/erhandle');
+var swaggerUi = require('swagger-ui-express');
+var docsOptions = require('./config/docs');
 var express = require('express');
 var passport = require('passport');
 var logger = require('morgan');
@@ -15,6 +17,8 @@ var app = express();
 
 app.use(passport.initialize());
 require('./config/passport')(passport, db);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(docsOptions));
 
 //Routers
 var apiRouter = require('./routes/api')(db, log, passport);

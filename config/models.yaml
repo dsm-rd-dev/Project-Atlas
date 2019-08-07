@@ -1,0 +1,2556 @@
+tags:
+  - name: User
+    description: User Resource
+  - name: App
+    description: App Resource
+  - name: Role
+    description: Role Resource
+  - name: Company
+    description: Interacting with the ConnectWise Company API
+  - name: Ticket
+    description: Interacting with the ConnectWise Tickets API
+
+components:
+    Company:
+      definitions: {}
+      $schema: 'http://json-schema.org/draft-07/schema#'
+      $id: 'http://example.com/root.json'
+      type: object
+      title: The Root Schema
+      required:
+        - id
+        - identifier
+        - name
+        - status
+        - addressLine1
+        - addressLine2
+        - city
+        - state
+        - zip
+        - country
+        - phoneNumber
+        - faxNumber
+        - website
+        - territory
+        - market
+        - accountNumber
+        - defaultContact
+        - dateAcquired
+        - sicCode
+        - parentCompany
+        - annualRevenue
+        - numberOfEmployees
+        - ownershipType
+        - timeZoneSetup
+        - leadSource
+        - leadFlag
+        - unsubscribeFlag
+        - calendar
+        - userDefinedField1
+        - userDefinedField2
+        - userDefinedField3
+        - userDefinedField4
+        - userDefinedField5
+        - userDefinedField6
+        - userDefinedField7
+        - userDefinedField8
+        - userDefinedField9
+        - userDefinedField10
+        - vendorIdentifier
+        - taxIdentifier
+        - taxCode
+        - billingTerms
+        - invoiceTemplate
+        - pricingSchedule
+        - companyEntityType
+        - billToCompany
+        - billingSite
+        - billingContact
+        - invoiceDeliveryMethod
+        - invoiceToEmailAddress
+        - invoiceCCEmailAddress
+        - deletedFlag
+        - dateDeleted
+        - deletedBy
+        - mobileGuid
+        - facebookUrl
+        - twitterUrl
+        - linkedInUrl
+        - currency
+        - territoryManager
+        - typeIds
+        - _info
+        - customFields
+      properties:
+        id:
+          $id: '#/properties/id'
+          type: integer
+          title: The Id Schema
+          default: 0
+          examples:
+            - 0
+        identifier:
+          $id: '#/properties/identifier'
+          type: string
+          title: The Identifier Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        name:
+          $id: '#/properties/name'
+          type: string
+          title: The Name Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        status:
+          $id: '#/properties/status'
+          type: object
+          title: The Status Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/status/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/status/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/status/properties/_info'
+              type: object
+              title: The _info Schema
+        addressLine1:
+          $id: '#/properties/addressLine1'
+          type: string
+          title: The Addressline1 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        addressLine2:
+          $id: '#/properties/addressLine2'
+          type: string
+          title: The Addressline2 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        city:
+          $id: '#/properties/city'
+          type: string
+          title: The City Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        state:
+          $id: '#/properties/state'
+          type: string
+          title: The State Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        zip:
+          $id: '#/properties/zip'
+          type: string
+          title: The Zip Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        country:
+          $id: '#/properties/country'
+          type: object
+          title: The Country Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/country/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/country/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/country/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/country/properties/_info'
+              type: object
+              title: The _info Schema
+        phoneNumber:
+          $id: '#/properties/phoneNumber'
+          type: string
+          title: The Phonenumber Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        faxNumber:
+          $id: '#/properties/faxNumber'
+          type: string
+          title: The Faxnumber Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        website:
+          $id: '#/properties/website'
+          type: string
+          title: The Website Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        territory:
+          $id: '#/properties/territory'
+          type: object
+          title: The Territory Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/territory/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/territory/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/territory/properties/_info'
+              type: object
+              title: The _info Schema
+        market:
+          $id: '#/properties/market'
+          type: object
+          title: The Market Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/market/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/market/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/market/properties/_info'
+              type: object
+              title: The _info Schema
+        accountNumber:
+          $id: '#/properties/accountNumber'
+          type: string
+          title: The Accountnumber Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        defaultContact:
+          $id: '#/properties/defaultContact'
+          type: object
+          title: The Defaultcontact Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/defaultContact/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/defaultContact/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/defaultContact/properties/_info'
+              type: object
+              title: The _info Schema
+        dateAcquired:
+          $id: '#/properties/dateAcquired'
+          type: string
+          title: The Dateacquired Schema
+          default: ''
+          examples:
+            - '2019-08-07T15:21:12Z'
+          pattern: ^(.*)$
+        sicCode:
+          $id: '#/properties/sicCode'
+          type: object
+          title: The Siccode Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/sicCode/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/sicCode/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/sicCode/properties/_info'
+              type: object
+              title: The _info Schema
+        parentCompany:
+          $id: '#/properties/parentCompany'
+          type: object
+          title: The Parentcompany Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/parentCompany/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/parentCompany/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/parentCompany/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/parentCompany/properties/_info'
+              type: object
+              title: The _info Schema
+        annualRevenue:
+          $id: '#/properties/annualRevenue'
+          type: integer
+          title: The Annualrevenue Schema
+          default: 0
+          examples:
+            - 0
+        numberOfEmployees:
+          $id: '#/properties/numberOfEmployees'
+          type: integer
+          title: The Numberofemployees Schema
+          default: 0
+          examples:
+            - 0
+        ownershipType:
+          $id: '#/properties/ownershipType'
+          type: object
+          title: The Ownershiptype Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/ownershipType/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/ownershipType/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/ownershipType/properties/_info'
+              type: object
+              title: The _info Schema
+        timeZoneSetup:
+          $id: '#/properties/timeZoneSetup'
+          type: object
+          title: The Timezonesetup Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/timeZoneSetup/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/timeZoneSetup/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/timeZoneSetup/properties/_info'
+              type: object
+              title: The _info Schema
+        leadSource:
+          $id: '#/properties/leadSource'
+          type: string
+          title: The Leadsource Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        leadFlag:
+          $id: '#/properties/leadFlag'
+          type: boolean
+          title: The Leadflag Schema
+          default: false
+          examples:
+            - true
+        unsubscribeFlag:
+          $id: '#/properties/unsubscribeFlag'
+          type: boolean
+          title: The Unsubscribeflag Schema
+          default: false
+          examples:
+            - true
+        calendar:
+          $id: '#/properties/calendar'
+          type: object
+          title: The Calendar Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/calendar/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/calendar/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/calendar/properties/_info'
+              type: object
+              title: The _info Schema
+        userDefinedField1:
+          $id: '#/properties/userDefinedField1'
+          type: string
+          title: The Userdefinedfield1 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField2:
+          $id: '#/properties/userDefinedField2'
+          type: string
+          title: The Userdefinedfield2 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField3:
+          $id: '#/properties/userDefinedField3'
+          type: string
+          title: The Userdefinedfield3 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField4:
+          $id: '#/properties/userDefinedField4'
+          type: string
+          title: The Userdefinedfield4 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField5:
+          $id: '#/properties/userDefinedField5'
+          type: string
+          title: The Userdefinedfield5 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField6:
+          $id: '#/properties/userDefinedField6'
+          type: string
+          title: The Userdefinedfield6 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField7:
+          $id: '#/properties/userDefinedField7'
+          type: string
+          title: The Userdefinedfield7 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField8:
+          $id: '#/properties/userDefinedField8'
+          type: string
+          title: The Userdefinedfield8 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField9:
+          $id: '#/properties/userDefinedField9'
+          type: string
+          title: The Userdefinedfield9 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        userDefinedField10:
+          $id: '#/properties/userDefinedField10'
+          type: string
+          title: The Userdefinedfield10 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        vendorIdentifier:
+          $id: '#/properties/vendorIdentifier'
+          type: string
+          title: The Vendoridentifier Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        taxIdentifier:
+          $id: '#/properties/taxIdentifier'
+          type: string
+          title: The Taxidentifier Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        taxCode:
+          $id: '#/properties/taxCode'
+          type: object
+          title: The Taxcode Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/taxCode/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/taxCode/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/taxCode/properties/_info'
+              type: object
+              title: The _info Schema
+        billingTerms:
+          $id: '#/properties/billingTerms'
+          type: object
+          title: The Billingterms Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/billingTerms/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/billingTerms/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/billingTerms/properties/_info'
+              type: object
+              title: The _info Schema
+        invoiceTemplate:
+          $id: '#/properties/invoiceTemplate'
+          type: object
+          title: The Invoicetemplate Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/invoiceTemplate/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/invoiceTemplate/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/invoiceTemplate/properties/_info'
+              type: object
+              title: The _info Schema
+        pricingSchedule:
+          $id: '#/properties/pricingSchedule'
+          type: object
+          title: The Pricingschedule Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/pricingSchedule/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/pricingSchedule/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/pricingSchedule/properties/_info'
+              type: object
+              title: The _info Schema
+        companyEntityType:
+          $id: '#/properties/companyEntityType'
+          type: object
+          title: The Companyentitytype Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/companyEntityType/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/companyEntityType/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/companyEntityType/properties/_info'
+              type: object
+              title: The _info Schema
+        billToCompany:
+          $id: '#/properties/billToCompany'
+          type: object
+          title: The Billtocompany Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/billToCompany/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/billToCompany/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/billToCompany/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/billToCompany/properties/_info'
+              type: object
+              title: The _info Schema
+        billingSite:
+          $id: '#/properties/billingSite'
+          type: object
+          title: The Billingsite Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/billingSite/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/billingSite/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/billingSite/properties/_info'
+              type: object
+              title: The _info Schema
+        billingContact:
+          $id: '#/properties/billingContact'
+          type: object
+          title: The Billingcontact Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/billingContact/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/billingContact/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/billingContact/properties/_info'
+              type: object
+              title: The _info Schema
+        invoiceDeliveryMethod:
+          $id: '#/properties/invoiceDeliveryMethod'
+          type: object
+          title: The Invoicedeliverymethod Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/invoiceDeliveryMethod/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/invoiceDeliveryMethod/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/invoiceDeliveryMethod/properties/_info'
+              type: object
+              title: The _info Schema
+        invoiceToEmailAddress:
+          $id: '#/properties/invoiceToEmailAddress'
+          type: string
+          title: The Invoicetoemailaddress Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        invoiceCCEmailAddress:
+          $id: '#/properties/invoiceCCEmailAddress'
+          type: string
+          title: The Invoiceccemailaddress Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        deletedFlag:
+          $id: '#/properties/deletedFlag'
+          type: boolean
+          title: The Deletedflag Schema
+          default: false
+          examples:
+            - true
+        dateDeleted:
+          $id: '#/properties/dateDeleted'
+          type: string
+          title: The Datedeleted Schema
+          default: ''
+          examples:
+            - '2019-08-07T15:21:12Z'
+          pattern: ^(.*)$
+        deletedBy:
+          $id: '#/properties/deletedBy'
+          type: string
+          title: The Deletedby Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        mobileGuid:
+          $id: '#/properties/mobileGuid'
+          type: object
+          title: The Mobileguid Schema
+        facebookUrl:
+          $id: '#/properties/facebookUrl'
+          type: string
+          title: The Facebookurl Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        twitterUrl:
+          $id: '#/properties/twitterUrl'
+          type: string
+          title: The Twitterurl Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        linkedInUrl:
+          $id: '#/properties/linkedInUrl'
+          type: string
+          title: The Linkedinurl Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        currency:
+          $id: '#/properties/currency'
+          type: object
+          title: The Currency Schema
+          required:
+            - id
+            - symbol
+            - isoCode
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/currency/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            symbol:
+              $id: '#/properties/currency/properties/symbol'
+              type: string
+              title: The Symbol Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            isoCode:
+              $id: '#/properties/currency/properties/isoCode'
+              type: string
+              title: The Isocode Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/currency/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/currency/properties/_info'
+              type: object
+              title: The _info Schema
+        territoryManager:
+          $id: '#/properties/territoryManager'
+          type: object
+          title: The Territorymanager Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/territoryManager/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/territoryManager/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/territoryManager/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/territoryManager/properties/_info'
+              type: object
+              title: The _info Schema
+        typeIds:
+          $id: '#/properties/typeIds'
+          type: array
+          title: The Typeids Schema
+          items:
+            $id: '#/properties/typeIds/items'
+            type: integer
+            title: The Items Schema
+            default: 0
+            examples:
+              - 0
+        _info:
+          $id: '#/properties/_info'
+          type: object
+          title: The _info Schema
+        customFields:
+          $id: '#/properties/customFields'
+          type: array
+          title: The Customfields Schema
+          items:
+            $id: '#/properties/customFields/items'
+            type: object
+            title: The Items Schema
+            required:
+              - id
+              - caption
+              - type
+              - entryMethod
+              - numberOfDecimals
+              - value
+            properties:
+              id:
+                $id: '#/properties/customFields/items/properties/id'
+                type: integer
+                title: The Id Schema
+                default: 0
+                examples:
+                  - 0
+              caption:
+                $id: '#/properties/customFields/items/properties/caption'
+                type: string
+                title: The Caption Schema
+                default: ''
+                examples:
+                  - string
+                pattern: ^(.*)$
+              type:
+                $id: '#/properties/customFields/items/properties/type'
+                type: string
+                title: The Type Schema
+                default: ''
+                examples:
+                  - Button
+                pattern: ^(.*)$
+              entryMethod:
+                $id: '#/properties/customFields/items/properties/entryMethod'
+                type: string
+                title: The Entrymethod Schema
+                default: ''
+                examples:
+                  - EntryField
+                pattern: ^(.*)$
+              numberOfDecimals:
+                $id: '#/properties/customFields/items/properties/numberOfDecimals'
+                type: integer
+                title: The Numberofdecimals Schema
+                default: 0
+                examples:
+                  - 0
+              value:
+                $id: '#/properties/customFields/items/properties/value'
+                type: string
+                title: The Value Schema
+                default: ''
+                examples:
+                  - string
+                pattern: ^(.*)$
+    LoginRequest:
+        type: object
+        properties:
+            username:
+                type: string
+                example: username
+            password:
+                type: string
+                example: password
+    LoginResponse:
+        type: object
+        properties:
+            token:
+                type: string
+                example: JWT token
+    NewUser:
+        type: object
+        properties:
+            username:
+                type: string
+                example: username
+            role_id:
+                type: integer
+                example: 0
+    User:
+        type: object
+        properties:
+            username:
+                type: string
+                example: username
+            password:
+                type: string
+                example: password
+            role_id:
+                type: integer
+                example: 0
+
+    App:
+        type: object
+        properties:
+            name:
+                type: string
+                example: New App
+            role_id:
+                type: integer
+                example: 0
+            app_key:
+                type: string
+                example: App Key
+
+    NewApp:
+        type: object
+        properties:
+            name:
+                type: string
+                example: New App
+            role_id:    
+                type: integer
+                example: 0
+
+    Role:
+        type: object
+        properties:
+            name:
+                type: string
+                example: New Role
+            definition:
+                type: string
+                example: {"disabled": true}
+    NewTicket:
+        type: object
+        properties:
+            summary:
+                type: string
+            companyName:
+                type: string
+            boardId:
+                type: integer
+    Ticket:
+      definitions: {}
+      $schema: 'http://json-schema.org/draft-07/schema#'
+      $id: 'http://example.com/root.json'
+      type: object
+      title: The Root Schema
+      required:
+        - id
+        - summary
+        - recordType
+        - board
+        - status
+        - company
+        - site
+        - siteName
+        - addressLine1
+        - addressLine2
+        - city
+        - stateIdentifier
+        - zip
+        - country
+        - contact
+        - contactName
+        - contactPhoneNumber
+        - contactPhoneExtension
+        - contactEmailAddress
+        - type
+        - subType
+        - item
+        - team
+        - owner
+        - priority
+        - serviceLocation
+        - source
+        - requiredDate
+        - budgetHours
+        - opportunity
+        - agreement
+        - severity
+        - impact
+        - externalXRef
+        - poNumber
+        - knowledgeBaseCategoryId
+        - knowledgeBaseSubCategoryId
+        - allowAllClientsPortalView
+        - customerUpdatedFlag
+        - automaticEmailContactFlag
+        - automaticEmailResourceFlag
+        - automaticEmailCcFlag
+        - automaticEmailCc
+        - initialDescription
+        - initialInternalAnalysis
+        - initialResolution
+        - contactEmailLookup
+        - processNotifications
+        - skipCallback
+        - closedDate
+        - closedBy
+        - closedFlag
+        - actualHours
+        - approved
+        - estimatedExpenseCost
+        - estimatedExpenseRevenue
+        - estimatedProductCost
+        - estimatedProductRevenue
+        - estimatedTimeCost
+        - estimatedTimeRevenue
+        - billingMethod
+        - billingAmount
+        - hourlyRate
+        - subBillingMethod
+        - subBillingAmount
+        - subDateAccepted
+        - dateResolved
+        - dateResplan
+        - dateResponded
+        - resolveMinutes
+        - resPlanMinutes
+        - respondMinutes
+        - isInSla
+        - knowledgeBaseLinkId
+        - resources
+        - parentTicketId
+        - hasChildTicket
+        - hasMergedChildTicketFlag
+        - knowledgeBaseLinkType
+        - billTime
+        - billExpenses
+        - billProducts
+        - predecessorType
+        - predecessorId
+        - predecessorClosedFlag
+        - lagDays
+        - lagNonworkingDaysFlag
+        - estimatedStartDate
+        - duration
+        - location
+        - department
+        - mobileGuid
+        - sla
+        - currency
+        - mergedParentTicket
+        - _info
+        - customFields
+      properties:
+        id:
+          $id: '#/properties/id'
+          type: integer
+          title: The Id Schema
+          default: 0
+          examples:
+            - 0
+        summary:
+          $id: '#/properties/summary'
+          type: string
+          title: The Summary Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        recordType:
+          $id: '#/properties/recordType'
+          type: string
+          title: The Recordtype Schema
+          default: ''
+          examples:
+            - ServiceTicket
+          pattern: ^(.*)$
+        board:
+          $id: '#/properties/board'
+          type: object
+          title: The Board Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/board/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/board/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/board/properties/_info'
+              type: object
+              title: The _info Schema
+        status:
+          $id: '#/properties/status'
+          type: object
+          title: The Status Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/status/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/status/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/status/properties/_info'
+              type: object
+              title: The _info Schema
+        company:
+          $id: '#/properties/company'
+          type: object
+          title: The Company Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/company/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/company/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/company/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/company/properties/_info'
+              type: object
+              title: The _info Schema
+        site:
+          $id: '#/properties/site'
+          type: object
+          title: The Site Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/site/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/site/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/site/properties/_info'
+              type: object
+              title: The _info Schema
+        siteName:
+          $id: '#/properties/siteName'
+          type: string
+          title: The Sitename Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        addressLine1:
+          $id: '#/properties/addressLine1'
+          type: string
+          title: The Addressline1 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        addressLine2:
+          $id: '#/properties/addressLine2'
+          type: string
+          title: The Addressline2 Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        city:
+          $id: '#/properties/city'
+          type: string
+          title: The City Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        stateIdentifier:
+          $id: '#/properties/stateIdentifier'
+          type: string
+          title: The Stateidentifier Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        zip:
+          $id: '#/properties/zip'
+          type: string
+          title: The Zip Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        country:
+          $id: '#/properties/country'
+          type: object
+          title: The Country Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/country/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/country/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/country/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/country/properties/_info'
+              type: object
+              title: The _info Schema
+        contact:
+          $id: '#/properties/contact'
+          type: object
+          title: The Contact Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/contact/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/contact/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/contact/properties/_info'
+              type: object
+              title: The _info Schema
+        contactName:
+          $id: '#/properties/contactName'
+          type: string
+          title: The Contactname Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        contactPhoneNumber:
+          $id: '#/properties/contactPhoneNumber'
+          type: string
+          title: The Contactphonenumber Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        contactPhoneExtension:
+          $id: '#/properties/contactPhoneExtension'
+          type: string
+          title: The Contactphoneextension Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        contactEmailAddress:
+          $id: '#/properties/contactEmailAddress'
+          type: string
+          title: The Contactemailaddress Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        type:
+          $id: '#/properties/type'
+          type: object
+          title: The Type Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/type/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/type/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/type/properties/_info'
+              type: object
+              title: The _info Schema
+        subType:
+          $id: '#/properties/subType'
+          type: object
+          title: The Subtype Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/subType/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/subType/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/subType/properties/_info'
+              type: object
+              title: The _info Schema
+        item:
+          $id: '#/properties/item'
+          type: object
+          title: The Item Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/item/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/item/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/item/properties/_info'
+              type: object
+              title: The _info Schema
+        team:
+          $id: '#/properties/team'
+          type: object
+          title: The Team Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/team/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/team/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/team/properties/_info'
+              type: object
+              title: The _info Schema
+        owner:
+          $id: '#/properties/owner'
+          type: object
+          title: The Owner Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/owner/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/owner/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/owner/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/owner/properties/_info'
+              type: object
+              title: The _info Schema
+        priority:
+          $id: '#/properties/priority'
+          type: object
+          title: The Priority Schema
+          required:
+            - id
+            - name
+            - sort
+            - _info
+          properties:
+            id:
+              $id: '#/properties/priority/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/priority/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            sort:
+              $id: '#/properties/priority/properties/sort'
+              type: integer
+              title: The Sort Schema
+              default: 0
+              examples:
+                - 0
+            _info:
+              $id: '#/properties/priority/properties/_info'
+              type: object
+              title: The _info Schema
+        serviceLocation:
+          $id: '#/properties/serviceLocation'
+          type: object
+          title: The Servicelocation Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/serviceLocation/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/serviceLocation/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/serviceLocation/properties/_info'
+              type: object
+              title: The _info Schema
+        source:
+          $id: '#/properties/source'
+          type: object
+          title: The Source Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/source/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/source/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/source/properties/_info'
+              type: object
+              title: The _info Schema
+        requiredDate:
+          $id: '#/properties/requiredDate'
+          type: string
+          title: The Requireddate Schema
+          default: ''
+          examples:
+            - '2019-08-07T15:51:38Z'
+          pattern: ^(.*)$
+        budgetHours:
+          $id: '#/properties/budgetHours'
+          type: integer
+          title: The Budgethours Schema
+          default: 0
+          examples:
+            - 0
+        opportunity:
+          $id: '#/properties/opportunity'
+          type: object
+          title: The Opportunity Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/opportunity/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/opportunity/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/opportunity/properties/_info'
+              type: object
+              title: The _info Schema
+        agreement:
+          $id: '#/properties/agreement'
+          type: object
+          title: The Agreement Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/agreement/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/agreement/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/agreement/properties/_info'
+              type: object
+              title: The _info Schema
+        severity:
+          $id: '#/properties/severity'
+          type: string
+          title: The Severity Schema
+          default: ''
+          examples:
+            - Low
+          pattern: ^(.*)$
+        impact:
+          $id: '#/properties/impact'
+          type: string
+          title: The Impact Schema
+          default: ''
+          examples:
+            - Low
+          pattern: ^(.*)$
+        externalXRef:
+          $id: '#/properties/externalXRef'
+          type: string
+          title: The Externalxref Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        poNumber:
+          $id: '#/properties/poNumber'
+          type: string
+          title: The Ponumber Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        knowledgeBaseCategoryId:
+          $id: '#/properties/knowledgeBaseCategoryId'
+          type: integer
+          title: The Knowledgebasecategoryid Schema
+          default: 0
+          examples:
+            - 0
+        knowledgeBaseSubCategoryId:
+          $id: '#/properties/knowledgeBaseSubCategoryId'
+          type: integer
+          title: The Knowledgebasesubcategoryid Schema
+          default: 0
+          examples:
+            - 0
+        allowAllClientsPortalView:
+          $id: '#/properties/allowAllClientsPortalView'
+          type: boolean
+          title: The Allowallclientsportalview Schema
+          default: false
+          examples:
+            - true
+        customerUpdatedFlag:
+          $id: '#/properties/customerUpdatedFlag'
+          type: boolean
+          title: The Customerupdatedflag Schema
+          default: false
+          examples:
+            - true
+        automaticEmailContactFlag:
+          $id: '#/properties/automaticEmailContactFlag'
+          type: boolean
+          title: The Automaticemailcontactflag Schema
+          default: false
+          examples:
+            - true
+        automaticEmailResourceFlag:
+          $id: '#/properties/automaticEmailResourceFlag'
+          type: boolean
+          title: The Automaticemailresourceflag Schema
+          default: false
+          examples:
+            - true
+        automaticEmailCcFlag:
+          $id: '#/properties/automaticEmailCcFlag'
+          type: boolean
+          title: The Automaticemailccflag Schema
+          default: false
+          examples:
+            - true
+        automaticEmailCc:
+          $id: '#/properties/automaticEmailCc'
+          type: string
+          title: The Automaticemailcc Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        initialDescription:
+          $id: '#/properties/initialDescription'
+          type: string
+          title: The Initialdescription Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        initialInternalAnalysis:
+          $id: '#/properties/initialInternalAnalysis'
+          type: string
+          title: The Initialinternalanalysis Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        initialResolution:
+          $id: '#/properties/initialResolution'
+          type: string
+          title: The Initialresolution Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        contactEmailLookup:
+          $id: '#/properties/contactEmailLookup'
+          type: string
+          title: The Contactemaillookup Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        processNotifications:
+          $id: '#/properties/processNotifications'
+          type: boolean
+          title: The Processnotifications Schema
+          default: false
+          examples:
+            - true
+        skipCallback:
+          $id: '#/properties/skipCallback'
+          type: boolean
+          title: The Skipcallback Schema
+          default: false
+          examples:
+            - true
+        closedDate:
+          $id: '#/properties/closedDate'
+          type: string
+          title: The Closeddate Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        closedBy:
+          $id: '#/properties/closedBy'
+          type: string
+          title: The Closedby Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        closedFlag:
+          $id: '#/properties/closedFlag'
+          type: boolean
+          title: The Closedflag Schema
+          default: false
+          examples:
+            - true
+        actualHours:
+          $id: '#/properties/actualHours'
+          type: integer
+          title: The Actualhours Schema
+          default: 0
+          examples:
+            - 0
+        approved:
+          $id: '#/properties/approved'
+          type: boolean
+          title: The Approved Schema
+          default: false
+          examples:
+            - true
+        estimatedExpenseCost:
+          $id: '#/properties/estimatedExpenseCost'
+          type: integer
+          title: The Estimatedexpensecost Schema
+          default: 0
+          examples:
+            - 0
+        estimatedExpenseRevenue:
+          $id: '#/properties/estimatedExpenseRevenue'
+          type: integer
+          title: The Estimatedexpenserevenue Schema
+          default: 0
+          examples:
+            - 0
+        estimatedProductCost:
+          $id: '#/properties/estimatedProductCost'
+          type: integer
+          title: The Estimatedproductcost Schema
+          default: 0
+          examples:
+            - 0
+        estimatedProductRevenue:
+          $id: '#/properties/estimatedProductRevenue'
+          type: integer
+          title: The Estimatedproductrevenue Schema
+          default: 0
+          examples:
+            - 0
+        estimatedTimeCost:
+          $id: '#/properties/estimatedTimeCost'
+          type: integer
+          title: The Estimatedtimecost Schema
+          default: 0
+          examples:
+            - 0
+        estimatedTimeRevenue:
+          $id: '#/properties/estimatedTimeRevenue'
+          type: integer
+          title: The Estimatedtimerevenue Schema
+          default: 0
+          examples:
+            - 0
+        billingMethod:
+          $id: '#/properties/billingMethod'
+          type: string
+          title: The Billingmethod Schema
+          default: ''
+          examples:
+            - ActualRates
+          pattern: ^(.*)$
+        billingAmount:
+          $id: '#/properties/billingAmount'
+          type: integer
+          title: The Billingamount Schema
+          default: 0
+          examples:
+            - 0
+        hourlyRate:
+          $id: '#/properties/hourlyRate'
+          type: integer
+          title: The Hourlyrate Schema
+          default: 0
+          examples:
+            - 0
+        subBillingMethod:
+          $id: '#/properties/subBillingMethod'
+          type: string
+          title: The Subbillingmethod Schema
+          default: ''
+          examples:
+            - ActualRates
+          pattern: ^(.*)$
+        subBillingAmount:
+          $id: '#/properties/subBillingAmount'
+          type: integer
+          title: The Subbillingamount Schema
+          default: 0
+          examples:
+            - 0
+        subDateAccepted:
+          $id: '#/properties/subDateAccepted'
+          type: string
+          title: The Subdateaccepted Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        dateResolved:
+          $id: '#/properties/dateResolved'
+          type: string
+          title: The Dateresolved Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        dateResplan:
+          $id: '#/properties/dateResplan'
+          type: string
+          title: The Dateresplan Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        dateResponded:
+          $id: '#/properties/dateResponded'
+          type: string
+          title: The Dateresponded Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        resolveMinutes:
+          $id: '#/properties/resolveMinutes'
+          type: integer
+          title: The Resolveminutes Schema
+          default: 0
+          examples:
+            - 0
+        resPlanMinutes:
+          $id: '#/properties/resPlanMinutes'
+          type: integer
+          title: The Resplanminutes Schema
+          default: 0
+          examples:
+            - 0
+        respondMinutes:
+          $id: '#/properties/respondMinutes'
+          type: integer
+          title: The Respondminutes Schema
+          default: 0
+          examples:
+            - 0
+        isInSla:
+          $id: '#/properties/isInSla'
+          type: boolean
+          title: The Isinsla Schema
+          default: false
+          examples:
+            - true
+        knowledgeBaseLinkId:
+          $id: '#/properties/knowledgeBaseLinkId'
+          type: integer
+          title: The Knowledgebaselinkid Schema
+          default: 0
+          examples:
+            - 0
+        resources:
+          $id: '#/properties/resources'
+          type: string
+          title: The Resources Schema
+          default: ''
+          examples:
+            - string
+          pattern: ^(.*)$
+        parentTicketId:
+          $id: '#/properties/parentTicketId'
+          type: integer
+          title: The Parentticketid Schema
+          default: 0
+          examples:
+            - 0
+        hasChildTicket:
+          $id: '#/properties/hasChildTicket'
+          type: boolean
+          title: The Haschildticket Schema
+          default: false
+          examples:
+            - true
+        hasMergedChildTicketFlag:
+          $id: '#/properties/hasMergedChildTicketFlag'
+          type: boolean
+          title: The Hasmergedchildticketflag Schema
+          default: false
+          examples:
+            - true
+        knowledgeBaseLinkType:
+          $id: '#/properties/knowledgeBaseLinkType'
+          type: string
+          title: The Knowledgebaselinktype Schema
+          default: ''
+          examples:
+            - ServiceTicket
+          pattern: ^(.*)$
+        billTime:
+          $id: '#/properties/billTime'
+          type: string
+          title: The Billtime Schema
+          default: ''
+          examples:
+            - Billable
+          pattern: ^(.*)$
+        billExpenses:
+          $id: '#/properties/billExpenses'
+          type: string
+          title: The Billexpenses Schema
+          default: ''
+          examples:
+            - Billable
+          pattern: ^(.*)$
+        billProducts:
+          $id: '#/properties/billProducts'
+          type: string
+          title: The Billproducts Schema
+          default: ''
+          examples:
+            - Billable
+          pattern: ^(.*)$
+        predecessorType:
+          $id: '#/properties/predecessorType'
+          type: string
+          title: The Predecessortype Schema
+          default: ''
+          examples:
+            - Ticket
+          pattern: ^(.*)$
+        predecessorId:
+          $id: '#/properties/predecessorId'
+          type: integer
+          title: The Predecessorid Schema
+          default: 0
+          examples:
+            - 0
+        predecessorClosedFlag:
+          $id: '#/properties/predecessorClosedFlag'
+          type: boolean
+          title: The Predecessorclosedflag Schema
+          default: false
+          examples:
+            - true
+        lagDays:
+          $id: '#/properties/lagDays'
+          type: integer
+          title: The Lagdays Schema
+          default: 0
+          examples:
+            - 0
+        lagNonworkingDaysFlag:
+          $id: '#/properties/lagNonworkingDaysFlag'
+          type: boolean
+          title: The Lagnonworkingdaysflag Schema
+          default: false
+          examples:
+            - true
+        estimatedStartDate:
+          $id: '#/properties/estimatedStartDate'
+          type: string
+          title: The Estimatedstartdate Schema
+          default: ''
+          examples:
+            - '2019-08-07T15:51:38Z'
+          pattern: ^(.*)$
+        duration:
+          $id: '#/properties/duration'
+          type: integer
+          title: The Duration Schema
+          default: 0
+          examples:
+            - 0
+        location:
+          $id: '#/properties/location'
+          type: object
+          title: The Location Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/location/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/location/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/location/properties/_info'
+              type: object
+              title: The _info Schema
+        department:
+          $id: '#/properties/department'
+          type: object
+          title: The Department Schema
+          required:
+            - id
+            - identifier
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/department/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            identifier:
+              $id: '#/properties/department/properties/identifier'
+              type: string
+              title: The Identifier Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/department/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/department/properties/_info'
+              type: object
+              title: The _info Schema
+        mobileGuid:
+          $id: '#/properties/mobileGuid'
+          type: object
+          title: The Mobileguid Schema
+        sla:
+          $id: '#/properties/sla'
+          type: object
+          title: The Sla Schema
+          required:
+            - id
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/sla/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            name:
+              $id: '#/properties/sla/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/sla/properties/_info'
+              type: object
+              title: The _info Schema
+        currency:
+          $id: '#/properties/currency'
+          type: object
+          title: The Currency Schema
+          required:
+            - id
+            - symbol
+            - isoCode
+            - name
+            - _info
+          properties:
+            id:
+              $id: '#/properties/currency/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            symbol:
+              $id: '#/properties/currency/properties/symbol'
+              type: string
+              title: The Symbol Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            isoCode:
+              $id: '#/properties/currency/properties/isoCode'
+              type: string
+              title: The Isocode Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            name:
+              $id: '#/properties/currency/properties/name'
+              type: string
+              title: The Name Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/currency/properties/_info'
+              type: object
+              title: The _info Schema
+        mergedParentTicket:
+          $id: '#/properties/mergedParentTicket'
+          type: object
+          title: The Mergedparentticket Schema
+          required:
+            - id
+            - summary
+            - _info
+          properties:
+            id:
+              $id: '#/properties/mergedParentTicket/properties/id'
+              type: integer
+              title: The Id Schema
+              default: 0
+              examples:
+                - 0
+            summary:
+              $id: '#/properties/mergedParentTicket/properties/summary'
+              type: string
+              title: The Summary Schema
+              default: ''
+              examples:
+                - string
+              pattern: ^(.*)$
+            _info:
+              $id: '#/properties/mergedParentTicket/properties/_info'
+              type: object
+              title: The _info Schema
+        _info:
+          $id: '#/properties/_info'
+          type: object
+          title: The _info Schema
+        customFields:
+          $id: '#/properties/customFields'
+          type: array
+          title: The Customfields Schema
+          items:
+            $id: '#/properties/customFields/items'
+            type: object
+            title: The Items Schema
+            required:
+              - id
+              - caption
+              - type
+              - entryMethod
+              - numberOfDecimals
+              - value
+            properties:
+              id:
+                $id: '#/properties/customFields/items/properties/id'
+                type: integer
+                title: The Id Schema
+                default: 0
+                examples:
+                  - 0
+              caption:
+                $id: '#/properties/customFields/items/properties/caption'
+                type: string
+                title: The Caption Schema
+                default: ''
+                examples:
+                  - string
+                pattern: ^(.*)$
+              type:
+                $id: '#/properties/customFields/items/properties/type'
+                type: string
+                title: The Type Schema
+                default: ''
+                examples:
+                  - Button
+                pattern: ^(.*)$
+              entryMethod:
+                $id: '#/properties/customFields/items/properties/entryMethod'
+                type: string
+                title: The Entrymethod Schema
+                default: ''
+                examples:
+                  - EntryField
+                pattern: ^(.*)$
+              numberOfDecimals:
+                $id: '#/properties/customFields/items/properties/numberOfDecimals'
+                type: integer
+                title: The Numberofdecimals Schema
+                default: 0
+                examples:
+                  - 0
+              value:
+                $id: '#/properties/customFields/items/properties/value'
+                type: string
+                title: The Value Schema
+                default: ''
+                examples:
+                  - string
+                pattern: ^(.*)$
