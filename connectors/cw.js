@@ -27,8 +27,21 @@ module.exports = {
 
     getCompanyID: function(identifier) {
         return new Promise((resolve, reject) => {
-            if (identifier == 'System') resolve(250);
-            console.log(identifier);
+            //Exceptions
+            switch(identifier){
+                case 'System':
+                    resolve(250);
+                    break;
+                case 'FLDEO':
+                    resolve(21818);
+                    break;
+                case 'SimsCrane':
+                    resolve(24066);
+                    break;
+                case 'WallTitus':
+                    resolve(21275);
+                    break;
+            }
             cw.CompanyAPI.Companies.getCompanies({
                 "conditions": 'identifier = "' + identifier + '"'
             }).then(comp => {
@@ -101,6 +114,12 @@ module.exports = {
             cw.ServiceDeskAPI.Tickets.getTicketById(id).then((result) => {
                 resolve(result);
             }).catch((error) => {
+                if(error.message == "You do not have security permission to perform this action."){
+                    var err = new Error();
+                    err.status = 404;
+                    err.message = "NotFound";
+                    reject(err);
+                }
                 reject(error);
             });
         });
