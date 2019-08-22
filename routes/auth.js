@@ -218,7 +218,39 @@ module.exports = (db, log, passport) => {
                 res.status(500).send(err).end();
             });
         }).catch(next);
-    })
+    });
+
+    /**
+     * @swagger
+     * /auth/app/:id:
+     *  delete:
+     *      tags: [App]
+     *      description: Delete App
+     *      parameters:
+     *          - in: path
+     *            name: id
+     *            required: true
+     *            schema:
+     *              type: integer
+     *            description: App ID
+     * 
+     *      responses:
+     *          '200':
+     *              description: Successfully Deleted
+     *          '401':
+     *              description: 'Unauthroized'
+     */
+    router.delete('/app/:id', requireAdmin, (req, res, next) => {
+        db.App.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(app => {
+            app.destroy().then(() => {
+                res.status(200).end();
+            }).catch(next);
+        }).catch(next);
+    });
 
     /**
      * @swagger
@@ -323,7 +355,7 @@ module.exports = (db, log, passport) => {
      *              $ref: '#/components/Role'
      *      responses:
      *          '200':
-     *              description: Successfully Created
+     *              description: Successfully Updated
      *              schema:
      *                  $ref: '#/components/Role'
      *          '401':
@@ -343,7 +375,38 @@ module.exports = (db, log, passport) => {
                 res.status(500).send(err).end();
             });
         }).catch(next);
-    })
+    });
+
+    /**
+     * @swagger
+     * /auth/role/<id>:
+     *  delete:
+     *      tags: [Role]
+     *      description: Delete Role
+     *      parameters:
+     *          - in: path
+     *            name: id
+     *            required: true
+     *            schema:
+     *              type: integer
+     *            description: Role ID
+     *      responses:
+     *          '200':
+     *              description: Successfully Deleted
+     *          '401':
+     *              description: 'Unauthroized'
+     */
+    router.delete('/role/:id', requireAdmin, (req, res, next) => {
+        db.Role.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(role => {
+            role.destroy().then(() => {
+                res.status(200).end();
+            }).catch(next);
+        }).catch(next);
+    });
 
     /**
      * @swagger
@@ -376,10 +439,7 @@ module.exports = (db, log, passport) => {
                 res.send({
                     message: "User created successfully"
                 });
-            }).catch(err => {
-                console.log(err);
-                res.status(500).send(err).end();
-            })
+            }).catch(next);
         }).catch(next);
     })
 
@@ -490,6 +550,35 @@ module.exports = (db, log, passport) => {
             });
         }).catch(next);
     });
+
+    /**
+     * @swagger
+     * /auth/user/<id>:
+     *  delete:
+     *      tags: [User]
+     *      description: Delete User
+     *      parameters:
+     *          - in: path
+     *            name: id
+     *            required: true
+     *            schema:
+     *              type: integer
+     *            description: User ID
+     *      responses:
+     *          '200':
+     *              description: Successfully Deleted
+     *          '401':
+     *              description: Unauthorized
+     */
+    router.delete('/user/:id', requireAdmin, (req, res, next) => {
+        db.User.delete({
+            where: {
+                id: req.params.id
+            }
+        }).then(numRecords => {
+            res.status(200).end();
+        }).catch(next);
+    })
 
     /**
      * @swagger
